@@ -10,7 +10,7 @@
 }
 
 body {
-  background-image: url("./fondo.webp");
+  background-image: url("./fondo.webp") !important;
   background-size: cover;
 }
 
