@@ -11,6 +11,10 @@ export const Content = ({ items, allSearchResults }) => {
       ? items.slice(startIndex, endIndex)
       : allSearchResults.slice(startIndex, endIndex);
 
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   const handleNextClick = () => {
     if (currentPage * itemsPerPage < items.length)
       setCurrentPage(currentPage + 1);
@@ -27,14 +31,18 @@ export const Content = ({ items, allSearchResults }) => {
         <div className="btn-group grid grid-cols-2">
           <button
             disabled={currentPage === 1}
-            onClick={handlePrevClick}
+            onClick={() => {
+              handlePrevClick(), scrollTop();
+            }}
             className="btn btn-outline"
           >
             Previous page
           </button>
           <button
             disabled={currentPage === Math.ceil(items.length / itemsPerPage)}
-            onClick={handleNextClick}
+            onClick={() => {
+              handleNextClick(), scrollTop();
+            }}
             className="btn btn-outline"
           >
             Next page
